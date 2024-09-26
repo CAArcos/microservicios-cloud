@@ -1,0 +1,22 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: config-service
+  security:
+    basic:
+      enabled: true
+    user:
+      name: root
+      password: s3cr3t
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/CAArcos/microservicios-cloud.git
+          force-pull: true # pull the latest code from GIT in case the local repo has some issues and couldn't able to update the repo
+          skipSslValidation: true # Git Server SSL validation can be disabled
+          timeout: 10 #HTTP connection timeout (in seconds)
+          username: {GIT_USER}
+          password: {GIT_PASSWORD}
+          default-label: "main"
