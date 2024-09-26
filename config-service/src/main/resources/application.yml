@@ -14,6 +14,7 @@ spring:
       server:
         git:
           uri: https://github.com/CAArcos/microservicios-cloud.git
+          searchPaths: config-data
           force-pull: true # pull the latest code from GIT in case the local repo has some issues and couldn't able to update the repo
           skipSslValidation: true # Git Server SSL validation can be disabled
           timeout: 10 #HTTP connection timeout (in seconds)
