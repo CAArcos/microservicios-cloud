@@ -22,7 +22,7 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
-    public List<Customer> findCustomerByRegion(Region region) {
+    public List<Customer> findCustomersByRegion(Region region) {
         return customerRepository.findByRegion(region);
     }
 

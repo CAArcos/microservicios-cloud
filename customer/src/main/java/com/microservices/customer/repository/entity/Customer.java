@@ -12,7 +12,6 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-@Builder
 @Entity
 @Table(name="tbl_customers")
 public class Customer implements Serializable{

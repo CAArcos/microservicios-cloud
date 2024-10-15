@@ -32,23 +32,24 @@ public class CustomerRest {
 
     //Recuperar todos los clientes
     @GetMapping
-    public ResponseEntity <List<Customer>> listAllCustomers(@RequestParam(name ="regionId", required = false) Long regionId){
-        List<Customer> customers = new ArrayList<>();
-        if(null == regionId){
+    public ResponseEntity<List<Customer>> listAllCustomers(@RequestParam(name = "regionId" , required = false) Long regionId ) {
+        List<Customer> customers =  new ArrayList<>();
+        if (null ==  regionId) {
             customers = customerService.findCustomerAll();
-            if(customers.isEmpty()){
+            if (customers.isEmpty()) {
                 return ResponseEntity.noContent().build();
             }
         }else{
-            Region region = new Region();
-            region.setId(regionId);
-            customers = customerService.findCustomerByRegion(region);
-            if(null == customers){
-                log.error("Customers with region id {} not found", regionId);
-                return ResponseEntity.notFound().build();
+            Region Region= new Region();
+            Region.setId(regionId);
+            customers = customerService.findCustomersByRegion(Region);
+            if ( null == customers ) {
+                log.error("Customers with Region id {} not found.", regionId);
+                return  ResponseEntity.notFound().build();
             }
         }
-        return ResponseEntity.ok(customers);
+
+        return  ResponseEntity.ok(customers);
     }
 
     //Recuperar un cliente
@@ -64,14 +65,14 @@ public class CustomerRest {
         return ResponseEntity.ok(customer);
     }
 
-    public ResponseEntity<Customer> fallbackGetCustomer(@PathVariable("id") Long id){
+    /*public ResponseEntity<Customer> fallbackGetCustomer(@PathVariable("id") Long id){
         Customer customer = Customer.builder()
                 .firstName("none")
                 .lastName("none")
                 .email("none")
                 .photoUrl("none").build();
         return ResponseEntity.ok(customer);
-    }
+    }*/
 
     //Create a customer
     @PostMapping
