@@ -5,8 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microservices.customer.repository.entity.Customer;
 import com.microservices.customer.repository.entity.Region;
 import com.microservices.customer.service.CustomerService;
-//import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -53,7 +51,6 @@ public class CustomerRest {
     }
 
     //Recuperar un cliente
-    //@CircuitBreaker(name = "customerCB", fallbackMethod = "fallbackGetCustomer")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Customer> getCustomer(@PathVariable("id") Long id){
         log.info("Fetching customer with id: {}", id);
@@ -64,15 +61,6 @@ public class CustomerRest {
         }
         return ResponseEntity.ok(customer);
     }
-
-    /*public ResponseEntity<Customer> fallbackGetCustomer(@PathVariable("id") Long id){
-        Customer customer = Customer.builder()
-                .firstName("none")
-                .lastName("none")
-                .email("none")
-                .photoUrl("none").build();
-        return ResponseEntity.ok(customer);
-    }*/
 
     //Create a customer
     @PostMapping
